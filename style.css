@@ -11,28 +11,52 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+    
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .login-container {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.9);
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.3);
       width: 350px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid transparent;
+      animation: borderAnimation 3s infinite alternate;
+      backdrop-filter: blur(10px);
+    }
+    
+    @keyframes borderAnimation {
+      0% { border-color: #fdbb2d; box-shadow: 0 0 15px #fdbb2d; }
+      50% { border-color: #1f97b2; box-shadow: 0 0 15px #b21f1f; }
+      100% { border-color: #1a2a6c; box-shadow: 0 0 15px #1a2a6c; }
     }
 
     .login-container h2 {
       text-align: center;
       margin-bottom: 1.5rem;
-      color: #333;
+      color: #1a2a6c;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
 
     .login-container label {
       font-size: 14px;
-      color: #444;
+      color: #333;
       margin-bottom: 5px;
       display: block;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .login-container input {
@@ -43,6 +67,19 @@
       border-radius: 8px;
       outline: none;
       transition: 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .login-container input:focus {
+      border-color: #b21f1f;
+      box-shadow: 0 0 8px #b21f1f;
+      animation: pulseGlow 1.5s infinite alternate;
+    }
+    
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 5px #b21f1f; }
+      100% { box-shadow: 0 0 12px #fdbb2d; }
     }
 
     .login-container input:focus {
@@ -52,18 +89,52 @@
 
     .login-container button {
       width: 100%;
-      padding: 10px;
-      background: #4facfe;
+      padding: 12px;
+      background: linear-gradient(45deg, #fdbb2d, #b21f1f, #1a2a6c);
+      background-size: 200% auto;
       color: #fff;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
-      transition: 0.3s;
+      font-weight: bold;
+      letter-spacing: 1px;
+      transition: 0.5s;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      animation: gradientMove 3s infinite;
+    }
+    
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .login-container button:hover {
-      background: #00c6ff;
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      transform: translateY(-2px);
+      box-shadow: 0 7px 15px rgba(0, 198, 255, 0.3);
+    }
+    
+    .login-container button:before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(45deg);
+      z-index: -1;
+      transition: 0.6s;
+      animation: buttonShine 3s infinite;
+    }
+    
+    @keyframes buttonShine {
+      0% { left: -50%; }
+      100% { left: 150%; }
     }
 
     .login-container .extra-links {
@@ -73,10 +144,28 @@
     }
 
     .login-container .extra-links a {
-      color: #4facfe;
+      color: #b21f1f;
       text-decoration: none;
+      position: relative;
+      transition: 0.3s;
+      font-weight: 600;
     }
 
     .login-container .extra-links a:hover {
-      text-decoration: underline;
+      color: #fdbb2d;
+    }
+    
+    .login-container .extra-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: linear-gradient(90deg, #fdbb2d, #b21f1f);
+      transition: width 0.3s ease;
+    }
+    
+    .login-container .extra-links a:hover:after {
+      width: 100%;
     }
